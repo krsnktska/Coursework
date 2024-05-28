@@ -22,7 +22,7 @@
                     <DataGridTemplateColumn.CellEditingTemplate>
                         <DataTemplate>
                             <NumericUpDown
-                                Minimum="0"
+                                Minimum="-1"
                                 Maximum="5"
                                 Value="{Binding UsersAccessRights}"
                             />

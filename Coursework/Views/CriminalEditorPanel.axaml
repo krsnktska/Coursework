@@ -1,0 +1,53 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Coursework.Views.CriminalEditorPanel"
+>
+    <Grid 
+        ColumnDefinitions="155,*,*"
+        RowDefinitions="*,*,*,*,*,*,*"
+        Name="CriminalEditor">
+        <Image
+            Grid.RowSpan="5"
+            Grid.Column="0" Grid.Row="0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Width="150" Height="250"
+            Name="Image" Source="/Assets/no_photo.png" />
+        <TextBox
+            Grid.Column="1" Grid.Row="0"
+            Margin="0 0 10 7.5"
+            Name="Name" Watermark="Name Surname" />
+        <TextBox
+            Grid.Column="2" Grid.Row="0"
+            Name="Nick" Watermark="Nickname" />
+        <NumericUpDown
+            Margin="0 0 10 7.5"
+            Grid.Column="1" Grid.Row="1"
+            Name="Height" Minimum="99" Maximum="251" />
+        <TextBox
+            Grid.Column="2" Grid.Row="1"
+            Name="Profession" Watermark="Profession" />
+        <TextBox
+            Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
+            Name="LastCrime" Watermark="Last crime" />
+        <TextBox
+            Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"
+            Name="SpecialChars" Watermark="Special characteristics" />
+        <TextBox
+            Grid.Column="0" Grid.Row="4"
+            Margin="0 0 10 7.5"
+            Name="Citizen" Watermark="Criminal citizen" />
+        <TextBox
+            Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"
+            Name="KnownLanguages" Watermark="Languages known by criminal" />
+        <DatePicker
+            Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
+            Name="Birthday" />
+        <CheckBox
+            Grid.Column="2" Grid.Row="5"
+            Name="IsArchived">Archived</CheckBox>
+    </Grid>
+</UserControl>

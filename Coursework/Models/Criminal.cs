@@ -12,12 +12,17 @@ public class Criminal
     public double Height { get; set; } = 160;
     public string Profession { get; set; } = "Thief";
     public string LastCrime { get; set; } = "None";
-    public List<string> SpecialChars { get; set; } = [];
-    public List<string> KnownLanguages { get; set; } = [];
+    public string SpecialChars { get; set; } = "None";
+    public string KnownLanguages { get; set; } = "Russian";
     public string Citizen { get; set; } = "Russia";
-    public double[] Location { get; set; } = [6105178.323194, 8688138.383006];
+    public string Location { get; set; } = "Moscov";
     public DateTime Birthday { get; set; } = DateTime.UnixEpoch;
     public AccessRight ReviewRight = AccessRight.Assistant;
     public AccessRight EditRight = AccessRight.Assistant;
     public bool IsArchived { get; set; } = false;
+
+    public override string ToString()
+    {
+        return Name;
+    }
 }

@@ -54,8 +54,10 @@ public partial class LoginScreen : UserControl
                 }
                 else
                 {
-                    App.Window.ViewPlacer.Content = new UserPanel(this, user);
+                    App.Window.ViewPlacer.Content = new UserPanel(this);
                 }
+
+                App.Window.LoggedUser = user;
                 message = $"Hello, {username}!";
                 messageType = "ok";
             }

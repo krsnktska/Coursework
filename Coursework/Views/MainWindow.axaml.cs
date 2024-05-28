@@ -19,6 +19,7 @@ public partial class MainWindow : Window
     public int RunningNotifyID = 0;
     public MainWindowViewModel ViewModel = new();
     public Dictionary<Key, bool> PressedKeys = new();
+    public User? LoggedUser { get; set; } = null;
     
     public MainWindow()
     {
@@ -170,8 +171,19 @@ public partial class MainWindow : Window
             
                     this.ViewPlacer.Content = userManager.PrevView;
                     break;
-            }
+                case "UserPanel":
+                    var userPanel = (UserPanel)this.ViewPlacer.Content;
+                    if (userPanel.PrevView == null) return;
             
+                    this.ViewPlacer.Content = userPanel.PrevView;
+                    break;
+                case "CriminalsManager":
+                    var criminalsManager = (CriminalsManager)this.ViewPlacer.Content;
+                    if (criminalsManager.PrevView == null) return;
+            
+                    this.ViewPlacer.Content = criminalsManager.PrevView;
+                    break;
+            }
         }
         
         if (leftCtrl && s)

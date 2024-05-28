@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Coursework.Views.CriminalsManager"
+>
+    <Grid
+        ColumnDefinitions="200,*"
+        RowDefinitions="75,*,50"
+        >
+        <WrapPanel
+            Name="CriminalsTopPanel"
+            Grid.Row="0"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+        >
+            <TextBox Name="Search" Watermark="Search"/>
+            <Button Name="SearchButton" Click="SearchButton_OnClick">Search</Button>
+            <CheckBox Name="ShowArchived" Click="ShowArchived_OnClick">Show archived</CheckBox>
+        </WrapPanel>
+        
+        <Grid 
+            Grid.Row="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            ColumnDefinitions="250,*"
+        >
+            <ListBox
+                SelectionChanged="CriminalsListBox_OnSelectionChanged"
+                Grid.Column="0" Name="CriminalsListBox" />
+            <Panel Grid.Column="1" Name="CriminalEditPlaceHolder" />
+        </Grid>
+        
+        <WrapPanel 
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            Grid.Row="2"
+            Name="UsersManagerButtonsPanel">
+            <Button Name="Add" Click="Add_OnClick">Add</Button>
+            <Button Name="Delete" Click="Delete_OnClick">Delete</Button>
+            <Button Name="Save" Click="Save_OnClick">Save</Button>
+        </WrapPanel> 
+    </Grid>
+</UserControl>

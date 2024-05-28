@@ -124,8 +124,6 @@
         <!-- Admin Panel End -->
         
         <!-- Users Manager -->
-        
-        
         <Style Selector="WrapPanel#UsersManagerButtonsPanel">
             <Setter Property="HorizontalAlignment" Value="Center" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -150,6 +148,97 @@
             <Setter Property="Margin" Value="0" />
         </Style>
         <!-- Users Manager End -->
+
+        
+        <!-- User Panel -->
+        <Style Selector="StackPanel#UserStackPanel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <Style Selector="StackPanel#UserStackPanel Button">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Width" Value="320" />
+            <Setter Property="Background" Value="#181A1C" />
+        </Style>
+        
+        <Style Selector="StackPanel#UserStackPanel Button#ManageCriminals">
+            <Setter Property="CornerRadius" Value="10 10 0 0" />
+            <Setter Property="Foreground" Value="#734478" />
+            <Setter Property="Margin" Value="0 10 0 0" />
+        </Style>
+        <Style Selector="StackPanel#UserStackPanel Button#ManageCriminalGroups">
+            <Setter Property="CornerRadius" Value="0 0 10 10" />
+            <Setter Property="Foreground" Value="#5A5535" />
+        </Style>
+        
+        <Style Selector="StackPanel#UserStackPanel TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="Foreground" Value="#547944" />
+        </Style>
+        <!-- User Panel End -->
+        
+        <!-- Criminals Manager -->
+        <Style Selector="WrapPanel#CriminalsTopPanel">
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <Style Selector="WrapPanel#CriminalsTopPanel TextBox">
+            <Setter Property="Width" Value="230" />
+            <Setter Property="Margin" Value="10 0 0 0" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        
+        <Style Selector="WrapPanel#CriminalsTopPanel Button">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Setter Property="Width" Value="75" />
+            <Setter Property="Foreground" Value="#547944" />
+            <Setter Property="Margin" Value="20 0 0 0" />
+        </Style>
+        
+        <Style Selector="WrapPanel#CriminalsTopPanel CheckBox">
+            <Setter Property="Foreground" Value="#547944" />
+            <Setter Property="Margin" Value="300 0 0 0" />
+        </Style>
+        <!-- Criminals Manager End -->
+
+        <!-- Criminal Editor -->
+        <Style Selector="Grid#CriminalEditor">
+            <Setter Property="Margin" Value="10 0 " />
+        </Style>
+        
+        <Style Selector="Grid#CriminalEditor Image#Image">
+            <Setter Property="Margin" Value="0 0 5 5" />
+        </Style>
+        
+        <Style Selector="Grid#CriminalEditor TextBox">
+            <Setter Property="Margin" Value="0 0 0 7.5" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <Style Selector="Grid#CriminalEditor NumericUpDown">
+            <Setter Property="Margin" Value="0 0 0 7.5" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        
+        <Style Selector="Grid#CriminalEditor DatePicker">
+            <Setter Property="Margin" Value="0 0 0 7.5" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Height" Value="32" />
+            <Setter Property="Background" Value="Transparent" />
+        </Style>
+        <!-- Criminal Editor End -->
 
     </Application.Styles>
 </Application>

@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Coursework.Models;
 
@@ -7,13 +8,16 @@ namespace Coursework.Views;
 
 public partial class UserPanel : UserControl
 {
-    public User LoggedUser { get; set; }
-    public object PrevView;
+    public object? PrevView;
     
-    public UserPanel(object prevView, User user)
+    public UserPanel(object prevView)
     {
         InitializeComponent();
-        this.LoggedUser = user;
         this.PrevView = prevView;
+    }
+
+    private void ManageCriminals_OnClick(object? sender, RoutedEventArgs e)
+    {
+        App.Window.ViewPlacer.Content = new CriminalsManager(this);
     }
 }

@@ -1,10 +1,7 @@
 using System.Linq;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Coursework.Models;
-using Coursework.ViewModels;
 
 namespace Coursework.Views;
 
