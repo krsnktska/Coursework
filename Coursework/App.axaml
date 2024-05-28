@@ -9,7 +9,85 @@
         <local:ViewLocator/>
     </Application.DataTemplates>
   
+     <Application.Resources>
+         <FontFamily x:Key="MainFont">avares://Coursework/Assets/HasklugNerdFontMono-Medium.otf#Hasklug Nerd Font Mono</FontFamily>
+     </Application.Resources>
+             
     <Application.Styles>
         <FluentTheme />
+        
+        <!-- General -->
+        <Style Selector="Window">
+            <Setter Property="Background" Value="#0E1621" />
+            <Setter Property="Foreground" Value="#D0D4D6" />
+            <Setter Property="CanResize" Value="False" />
+            <Setter Property="WindowState" Value="Normal" />
+            <Setter Property="Height" Value="450" />
+            <Setter Property="Width" Value="800" />
+            <Setter Property="FontFamily" Value="{DynamicResource MainFont}" />
+        </Style>
+        
+        <Style Selector="TextBox:focus /template/ Border#PART_BorderElement">
+            <Setter Property="BorderBrush" Value="#547944"/>
+        </Style>
+        <!-- General End -->
+        
+        <!-- Login Screen -->
+        <Style Selector="StackPanel#LoginPanel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        
+        <Style Selector="StackPanel#LoginPanel TextBlock#WelcomeTextBlock">
+            <Setter Property="FontSize" Value="48" />
+            <Setter Property="Foreground" Value="#547944" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+        
+        <Style Selector="StackPanel#LoginPanel TextBox">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Width" Value="165" />
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Margin" Value="0 5" />
+        </Style>
+        
+        <Style Selector="StackPanel#LoginPanel Button">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Background" Value="#181A1C" />
+            <Setter Property="Foreground" Value="#547944" />
+            <Setter Property="Margin" Value="5 5" />
+        </Style>
+        <Style Selector="StackPanel#LoginPanel Button#ForgotPasswordButton">
+            <Setter Property="Foreground" Value="#794248" />
+        </Style>
+        <Style Selector="StackPanel#LoginPanel Button#LogInButton">
+            <Setter Property="Foreground" Value="#547944" />
+        </Style>
+
+        
+        <Style Selector="StackPanel#LoginPanel WrapPanel">
+            <Setter Property="HorizontalAlignment" Value="Center" />
+        </Style>
+        <!-- Login Screen End -->
+        
+        <!-- Notification -->
+        <Style Selector="Border#NotificationBorder">
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="BorderBrush" Value="#434978" />
+            <Setter Property="Background" Value="#0E1621" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="Padding" Value="10 5" />
+            <Setter Property="ZIndex" Value="10" />
+        </Style>
+        
+        <Style Selector="TextBlock#NotificationDescription">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Margin" Value="0 5" />
+        </Style>
+        <!-- Notification End -->
+        
+        
     </Application.Styles>
 </Application>

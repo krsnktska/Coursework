@@ -1,0 +1,20 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Coursework.Views.LoginScreen"
+>
+    <StackPanel Name="LoginPanel">
+        <TextBlock Name="WelcomeTextBlock">
+            Please Log In
+        </TextBlock>
+        <TextBox Name="UsernamePrompt" Watermark="Username" />
+        <TextBox Name="PasswordPrompt" PasswordChar="" Watermark="Password" />
+        
+        <WrapPanel Name="LoginButtonsWrapPanel">
+            <Button Name="ForgotPasswordButton" Content="Forgot Password" Click="ForgotPasswordButton_OnClick" />
+            <Button Name="LogInButton" Content="LogIn" Click="LogInButton_OnClick" />
+        </WrapPanel>
+    </StackPanel>
+</UserControl>
