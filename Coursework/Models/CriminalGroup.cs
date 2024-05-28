@@ -10,4 +10,5 @@ public class CriminalGroup
     public List<Criminal> Members { get; set; } = [];
     public AccessRight ReviewRight = AccessRight.Assistant;
     public AccessRight EditRight = AccessRight.Assistant;
+    public bool IsArchived { get; set; } = false;
 }

@@ -1,7 +1,6 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
+using Coursework.Models;
 
 namespace Coursework.Views;
 
@@ -19,13 +18,18 @@ public partial class LoginScreen : UserControl
 
     private void LogInButton_OnClick(object? sender, RoutedEventArgs e)
     {
+        LogIn();
+    }
+
+    public void LogIn()
+    {
         var username = UsernamePrompt.Text;
         var password = PasswordPrompt.Text;
 
         if (string.IsNullOrEmpty(username))
         {
-           App.Window.Notify("Error", "Please enter username", "critical", 2500);
-           return;
+            App.Window.Notify("Error", "Please enter username", "critical", 2500);
+            return;
         }
 
         if (string.IsNullOrEmpty(password))
@@ -34,7 +38,39 @@ public partial class LoginScreen : UserControl
             return;
         }
         
-        App.Window.Notify($"Hello, {username}!", $"Successfully logged in", "ok", 2500);
-
+        bool success = false;
+        string message, messageType;
+        
+        var user = App.Window.ViewModel.Database.SearchForUser(username);
+        if (user != null)
+        {
+            success = user.Password == password;
+            if (success)
+            {
+                if (user.UsersAccessRights == AccessRight.Administrator)
+                {
+                    App.Window.ViewPlacer.Content = new AdminPanel(this);
+                    
+                }
+                else
+                {
+                    App.Window.ViewPlacer.Content = new UserPanel(this, user);
+                }
+                message = $"Hello, {username}!";
+                messageType = "ok";
+            }
+            else
+            {
+                message = "Wrong password";
+                messageType = "critical";
+            }
+        }
+        else
+        {
+            message = $"Wrong username";
+            messageType = "warn";
+        }
+        
+        App.Window.Notify(message, success ? "Successfully logged in" : "Try again", messageType, 2500);
     }
 }

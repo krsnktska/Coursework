@@ -1,0 +1,50 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:vm="using:Coursework.ViewModels"
+             x:Class="Coursework.Views.UserManager"
+             x:DataType="vm:UserManagerViewModel"
+>
+    <Grid
+        RowDefinitions="*,50">
+        <DataGrid 
+            Name="UsersGrid"
+            AutoGenerateColumns="False"
+            ItemsSource="{Binding UsersList }"
+            VerticalScrollBarVisibility="Visible"
+        >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Username" Width="*" Binding="{Binding Username}"/>
+                <DataGridTextColumn Header="Password" Width="*" Binding="{Binding Password}"/>
+                <DataGridTemplateColumn Header="Access Rights" Width="*">
+                    <DataGridTemplateColumn.CellEditingTemplate>
+                        <DataTemplate>
+                            <NumericUpDown
+                                Minimum="0"
+                                Maximum="5"
+                                Value="{Binding UsersAccessRights}"
+                            />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellEditingTemplate>
+                
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Margin="25 0 0 0"
+                                Text="{Binding UsersAccessRights}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+        <WrapPanel Name="UsersManagerButtonsPanel" Grid.Row="1">
+            <Button Name="Add" Click="Add_OnClick">Add</Button>
+            <Button Name="Delete" Click="Delete_OnClick">Delete</Button>
+            <Button Name="Save" Click="Save_OnClick">Save</Button>
+        </WrapPanel> 
+    </Grid>
+</UserControl>

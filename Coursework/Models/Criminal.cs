@@ -19,4 +19,5 @@ public class Criminal
     public DateTime Birthday { get; set; } = DateTime.UnixEpoch;
     public AccessRight ReviewRight = AccessRight.Assistant;
     public AccessRight EditRight = AccessRight.Assistant;
+    public bool IsArchived { get; set; } = false;
 }
