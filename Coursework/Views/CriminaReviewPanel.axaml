@@ -1,0 +1,60 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="Coursework.Views.CriminaReviewPanel"
+>
+    <Grid 
+        ColumnDefinitions="155,*,*"
+        RowDefinitions="*,*,*,*,*,*,*"
+        Name="CriminalViewer">
+        <Image
+            Grid.RowSpan="5"
+            Grid.Column="0" Grid.Row="0"
+            VerticalAlignment="Top"
+            HorizontalAlignment="Left"
+            Width="150" Height="250"
+            Name="Image" Source="/Assets/no_photo.png" />
+        <TextBlock
+            Grid.Column="1" Grid.Row="0"
+            Margin="0 0 10 7.5"
+            Name="Name"/>
+        <TextBlock
+            Grid.Column="2" Grid.Row="0"
+            Name="Nick" />
+        <TextBlock
+            Margin="0 0 10 7.5"
+            Grid.Column="1" Grid.Row="1"
+            Name="Height" />
+        <TextBlock
+            Grid.Column="2" Grid.Row="1"
+            Name="Profession" />
+        <TextBlock
+            Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
+            Name="LastCrime" />
+        <TextBlock
+            Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"
+            Name="SpecialChars" />
+        <TextBlock
+            Grid.Column="0" Grid.Row="4"
+            Margin="0 0 10 7.5"
+            Name="Citizen" />
+        <TextBlock
+            Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"
+            Name="KnownLanguages" />
+        <TextBlock
+            Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
+            Name="Birthday" />
+        <TextBlock
+            Grid.Column="2" Grid.Row="5"
+            Name="IsArchived">Archived</TextBlock>
+        <Button
+            Grid.Column="2" Grid.Row="6"
+            Name="Edit"
+            Click="Edit_OnClick"
+        >
+            Edit
+        </Button>
+    </Grid>
+</UserControl>

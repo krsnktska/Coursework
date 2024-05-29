@@ -2,7 +2,6 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Coursework.Models;
-using DynamicData;
 
 namespace Coursework.Views;
 
@@ -63,6 +62,12 @@ public partial class CriminalsManager : UserControl
         var selected = (Criminal?)CriminalsListBox.SelectedItem;
         if (selected == null) return;
 
+        if (App.Window.LoggedUser.UsersAccessRights < selected.EditRight)
+        {
+            App.Window.Notify("Weak permission", $"{selected.EditRight} rights needed", "critical", 2500);
+            return;
+        }
+        
         App.Window.ViewModel.Database.CriminalList.Remove(selected);
         UpdateList(Search.Text ?? "");
     }
@@ -78,6 +83,6 @@ public partial class CriminalsManager : UserControl
         if (selected == null) return;
 
         CriminalEditPlaceHolder.Children.Clear();
-        CriminalEditPlaceHolder.Children.Add(new CriminalEditorPanel(selected));
+        CriminalEditPlaceHolder.Children.Add(new CriminaReviewPanel(selected, this));
     }
 }

@@ -10,7 +10,7 @@
         RowDefinitions="*,*,*,*,*,*,*"
         Name="CriminalEditor">
         <Image
-            Grid.RowSpan="5"
+            Grid.RowSpan="4"
             Grid.Column="0" Grid.Row="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
@@ -39,7 +39,7 @@
         <TextBox
             Grid.Column="0" Grid.Row="4"
             Margin="0 0 10 7.5"
-            Name="Citizen" Watermark="Criminal citizen" />
+            Name="Citizen" Watermark="Citizenship" />
         <TextBox
             Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"
             Name="KnownLanguages" Watermark="Languages known by criminal" />
@@ -49,5 +49,28 @@
         <CheckBox
             Grid.Column="2" Grid.Row="5"
             Name="IsArchived">Archived</CheckBox>
+        
+        <WrapPanel 
+            Name="RightsPanel"
+            Grid.Column="0" Grid.Row="6" Grid.ColumnSpan="3"
+        >
+            <TextBlock>Edit level:</TextBlock>
+            <NumericUpDown
+                Name="EditLevel"
+                FormatString="0"
+            />
+            <TextBlock>Review level:</TextBlock>
+            <NumericUpDown
+                Name="ReviewLevel"
+                FormatString="0"
+            />
+            <Button
+                Name="Apply" Click="Apply_OnClick"
+            >
+                Apply
+            </Button>
+        </WrapPanel>
+        
+        
     </Grid>
 </UserControl>

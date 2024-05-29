@@ -15,10 +15,9 @@ public class Criminal
     public string SpecialChars { get; set; } = "None";
     public string KnownLanguages { get; set; } = "Russian";
     public string Citizen { get; set; } = "Russia";
-    public string Location { get; set; } = "Moscov";
     public DateTime Birthday { get; set; } = DateTime.UnixEpoch;
-    public AccessRight ReviewRight = AccessRight.Assistant;
-    public AccessRight EditRight = AccessRight.Assistant;
+    public AccessRight ReviewRight { get; set; } = AccessRight.Assistant;
+    public AccessRight EditRight { get; set; } = AccessRight.Assistant;
     public bool IsArchived { get; set; } = false;
 
     public override string ToString()

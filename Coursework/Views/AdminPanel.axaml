@@ -9,7 +9,6 @@
     <StackPanel Name="AdminStackPanel">
         <TextBlock Name="AdminPanelLabel">Admin Panel</TextBlock>
         <Button Name="ManageCriminals" Click="ManageCriminals_OnClick">Manage Criminals</Button>
-        <Button Name="ManageCriminalGroups">Manage Criminal Groups</Button>
         <Button Name="ManageUsers" Click="ManageUsers_OnClick">Manage Users</Button>
     </StackPanel>
     

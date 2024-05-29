@@ -8,6 +8,5 @@
     <StackPanel Name="UserStackPanel">
         <TextBlock Name="UserPanelLabel">User Panel</TextBlock>
         <Button Name="ManageCriminals" Click="ManageCriminals_OnClick">Manage Criminals</Button>
-        <Button Name="ManageCriminalGroups">Manage Criminal Groups</Button>
     </StackPanel>
 </UserControl>
