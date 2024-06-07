@@ -1,16 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Text.Encodings.Web;
-using System.Text.Json;
-using System.Text.Json.Serialization;
+using System.Linq;
 using System.Threading.Tasks;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Media;
 using Coursework.Models;
 using Coursework.ViewModels;
-using DynamicData;
+using MsBox.Avalonia;
+using MsBox.Avalonia.Enums;
+using ReactiveUI;
 
 namespace Coursework.Views;
 
@@ -25,13 +24,38 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        this.ViewModel.Database = this.LoadDatabase("database.database");
+        this.LoadDatabase();
         
         ViewPlacer.Content = new LoginScreen();
-        // ViewPlacer.Content = new AdminPanel();
             
         this.KeyDown += OnKeyDown;
         this.KeyUp += OnKeyUp;
+        this.AutoSave();
+        this.Closing += Window_OnClosing;
+    }
+
+    private async void Window_OnClosing(object? sender, WindowClosingEventArgs e)
+    {
+        e.Cancel = true;
+        
+        var box = MessageBoxManager
+            .GetMessageBoxStandard("Save?", "Save before exit?",
+                ButtonEnum.YesNoCancel);
+
+        switch (await box.ShowAsPopupAsync(this))
+        {
+            case ButtonResult.Yes:
+                this.SaveDatabase();
+                this.Closing -= Window_OnClosing;
+                this.Close();
+                break;
+            case ButtonResult.No:
+                this.Closing -= Window_OnClosing;
+                this.Close();
+                break;
+            case ButtonResult.Cancel:
+                break;
+        }
     }
 
     public async void Notify(string header, string description, string state, int duration)
@@ -78,58 +102,6 @@ public partial class MainWindow : Window
         {
             NotifyPlaceholder.Children.Clear();
         }
-    }
-    
-    public bool SaveDatabase(Database database, string path)
-    {
-        try
-        {
-            var options =  new JsonSerializerOptions
-            {
-                WriteIndented = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull, 
-                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower) },
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            };
-        
-            string jsonString = JsonSerializer.Serialize(database, options);
-            File.WriteAllText(path, jsonString); 
-            return true;
-        }
-        catch (Exception e)
-        {
-            return false;
-        }
-    }
-    
-    public Database LoadDatabase(string path)
-    {
-        Database? database = null;
-        try
-        {
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true,
-                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                Converters = { new JsonStringEnumConverter(JsonNamingPolicy.KebabCaseLower) },
-                Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
-            };
-            
-            string jsonString = File.ReadAllText(path);
-            database = JsonSerializer.Deserialize<Database>(jsonString, options);
-        }
-        catch (Exception e)
-        {
-        }
-
-        if (database == null)
-        {
-            this.Notify("Can't load database", "Creating new one", "critical", 2500);
-            return new Database();
-        }
-        
-        this.Notify("Database loaded", "Loaded successfully", "ok", 2500);
-        return database;
     }
     
     private void OnKeyUp(object? sender, KeyEventArgs e)
@@ -188,19 +160,74 @@ public partial class MainWindow : Window
         
         if (leftCtrl && s)
         {
-            Save();
+            SaveDatabase();
         }
     }
 
-    public void Save()
+    public bool SaveDatabase()
     {
-        if (this.SaveDatabase(this.ViewModel.Database, "database.database"))
+        if (!this.ValidateDatabase()) return false;
+        
+        if (this.ViewModel.SaveDatabase("database.database"))
         {
             this.Notify("Saved", "Database saved", "ok", 2000);
+            return true;
+        }
+        
+        this.Notify("Can't save", "Some error occured", "critical", 2000);
+        return false;
+    }
+    public void LoadDatabase()
+    {
+        if (this.ViewModel.LoadDatabase("database.database"))
+        {
+            this.Notify("Database loaded", "Loaded successfully", "ok", 2500);
         }
         else
         {
-            this.Notify("Can't save", "Some error occured", "critical", 2000);
+            this.Notify("Can't load", "Some error occured, creating new database", "critical", 3000);
         }
+    }
+    public bool ValidateDatabase()
+    {
+        HashSet<string> names = [];
+        
+        if (ViewModel.Database.UsersList.Any(user => user.Username == ""))
+        {
+            Notify("Can't save database", "Username can't be empty", "critical", 2500);
+            return false;
+        }
+        
+        if (ViewModel.Database.UsersList.Any(user => user.Username.Trim() != user.Username))
+        {
+            Notify("Can't save database", "Username can't start or end with \" \"", "critical", 2500);
+            return false;
+        }
+        
+        if (ViewModel.Database.UsersList.Any(user => !names.Add(user.Username)))
+        {
+            Notify("Can't save database", "Users can't have same username", "critical", 2500);
+            return false;
+        }
+        
+        if (ViewModel.Database.UsersList.Any(user => user.Password == ""))
+        {
+            Notify("Can't save database", "Password can't be empty", "critical", 2500);
+            return false;
+        }
+        
+        if (ViewModel.Database.UsersList.Any(user => user.Password.Trim() != user.Password))
+        {
+            Notify("Can't save database", "Password can't start or end with \" \"", "critical", 2500);
+            return false;
+        }
+        
+        return true;
+    }
+    public async void AutoSave()
+    {
+        await Task.Delay(60 * 1000);
+        this.SaveDatabase();
+        this.AutoSave();
     }
 }

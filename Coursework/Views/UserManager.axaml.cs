@@ -2,12 +2,14 @@ using System.Linq;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Coursework.Models;
+using Coursework.ViewModels;
 
 namespace Coursework.Views;
 
 public partial class UserManager : UserControl
 {
     public object? PrevView;
+    public UserManagerViewModel ViewModel = new();
     
     public UserManager(object prevView)
     {
@@ -25,7 +27,7 @@ public partial class UserManager : UserControl
 
     private void Save_OnClick(object? sender, RoutedEventArgs e)
     {
-        App.Window.Save();
+        App.Window.SaveDatabase();
     }
 
     private void Delete_OnClick(object? sender, RoutedEventArgs e)

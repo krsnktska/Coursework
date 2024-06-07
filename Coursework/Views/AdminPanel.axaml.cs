@@ -17,7 +17,6 @@ public partial class AdminPanel : UserControl
     {
         App.Window.ViewPlacer.Content = new UserManager(this);
     }
-
     private void ManageCriminals_OnClick(object? sender, RoutedEventArgs e)
     {
         App.Window.ViewPlacer.Content = new CriminalsManager(this);

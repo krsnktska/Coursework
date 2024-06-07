@@ -9,13 +9,15 @@
         ColumnDefinitions="155,*,*"
         RowDefinitions="*,*,*,*,*,*,*"
         Name="CriminalEditor">
-        <Image
+        
+        <Button
             Grid.RowSpan="4"
             Grid.Column="0" Grid.Row="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
-            Width="150" Height="250"
-            Name="Image" Source="/Assets/no_photo.png" />
+            Width="150" Height="170"
+            Click="Image_OnClick"
+            Name="Image" />
         <TextBox
             Grid.Column="1" Grid.Row="0"
             Margin="0 0 10 7.5"

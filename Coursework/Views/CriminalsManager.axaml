@@ -48,7 +48,7 @@
             Name="CriminalManagerButtonsPanel">
             <Button Name="Add" Click="Add_OnClick">Add</Button>
             <Button Name="Delete" Click="Delete_OnClick">Delete</Button>
-            <Button Name="Save" Click="Save_OnClick">Save</Button>
+            <Button Name="Save" Click="Save_OnClick">SaveDatabase</Button>
         </WrapPanel> 
     </Grid>
 </UserControl>

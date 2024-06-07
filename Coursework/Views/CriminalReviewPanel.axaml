@@ -3,7 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="Coursework.Views.CriminaReviewPanel"
+             x:Class="Coursework.Views.CriminalReviewPanel"
 >
     <Grid 
         ColumnDefinitions="155,*,*"
@@ -14,7 +14,8 @@
             Grid.Column="0" Grid.Row="0"
             VerticalAlignment="Top"
             HorizontalAlignment="Left"
-            Width="150" Height="250"
+            Width="150" Height="187"
+            Stretch="Uniform"
             Name="Image" Source="/Assets/no_photo.png" />
         <TextBlock
             Grid.Column="1" Grid.Row="0"

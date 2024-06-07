@@ -15,7 +15,6 @@ public partial class LoginScreen : UserControl
     {
         App.Window.Notify("Forgot Password", "Ask the administrator for help", "warn", 5000);
     }
-
     private void LogInButton_OnClick(object? sender, RoutedEventArgs e)
     {
         LogIn();
@@ -31,7 +30,6 @@ public partial class LoginScreen : UserControl
             App.Window.Notify("Error", "Please enter username", "critical", 2500);
             return;
         }
-
         if (string.IsNullOrEmpty(password))
         {
             App.Window.Notify("Error", "Please enter password", "critical", 2500);

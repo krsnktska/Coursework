@@ -27,7 +27,7 @@ public partial class CriminalsManager : UserControl
                     bool found = false;
                     foreach (var prop in typeof(Criminal).GetProperties())
                     {
-                        found = ((string?)prop.GetValue(criminal))?.Contains(filter) ?? false;
+                        found = (prop.GetValue(criminal)?.ToString())?.Contains(filter) ?? false;
                         if (found) break;
                     }
 
@@ -74,7 +74,7 @@ public partial class CriminalsManager : UserControl
 
     private void Save_OnClick(object? sender, RoutedEventArgs e)
     {
-        App.Window.Save();
+        App.Window.SaveDatabase();
     }
 
     private void CriminalsListBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e)
@@ -83,6 +83,6 @@ public partial class CriminalsManager : UserControl
         if (selected == null) return;
 
         CriminalEditPlaceHolder.Children.Clear();
-        CriminalEditPlaceHolder.Children.Add(new CriminaReviewPanel(selected, this));
+        CriminalEditPlaceHolder.Children.Add(new CriminalReviewPanel(selected, this));
     }
 }

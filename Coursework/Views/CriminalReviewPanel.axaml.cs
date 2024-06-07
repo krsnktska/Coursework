@@ -1,21 +1,18 @@
-using System;
-using Avalonia;
+using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
-using Avalonia.Platform;
 using Coursework.Models;
 
 namespace Coursework.Views;
 
-public partial class CriminaReviewPanel : UserControl
+public partial class CriminalReviewPanel : UserControl
 {
     
     public Criminal Criminal;
     public CriminalsManager Parent;
     
-    public CriminaReviewPanel(Criminal criminal, CriminalsManager parent)
+    public CriminalReviewPanel(Criminal criminal, CriminalsManager parent)
     {
         InitializeComponent();
         
@@ -24,7 +21,24 @@ public partial class CriminaReviewPanel : UserControl
 
         if (criminal.ImagePath != "")
         {
-            Image.Source =  new Bitmap(AssetLoader.Open(new Uri(criminal.ImagePath)));   
+            FileStream? fileStream = null;
+            try
+            { 
+                fileStream = File.OpenRead(criminal.ImagePath);
+            }
+            catch
+            {
+                App.Window.Notify("Error", $"Can't load image file", "critical", 2500);
+            }
+
+            if (fileStream != null)
+            {
+                Image.Source = Bitmap.DecodeToWidth(fileStream, 150);
+            }
+        }
+        else
+        {
+            // Image.Source =  new Bitmap(AssetLoader.Open(new Uri("/Assets/")));   
         }
         Name.Text = "Name: " + criminal.Name;
         Nick.Text = "Nickname: " + criminal.Nickname;
@@ -33,8 +47,8 @@ public partial class CriminaReviewPanel : UserControl
         LastCrime.Text = "Last crime: " + criminal.LastCrime;
         SpecialChars.Text = "Specials: " + criminal.SpecialChars;
         KnownLanguages.Text = "Known languages: " + criminal.KnownLanguages;
-        Citizen.Text = criminal.Citizen;
-        Birthday.Text = "Birthday: " + Criminal.Birthday.ToString("MMMM d, yyyy");
+        Citizen.Text = criminal.Citizenship;
+        Birthday.Text = "Birthday: " + Criminal.Birthday.ToString("d MMMM, yyyy");
         IsArchived.Text = criminal.IsArchived ? "Archived" : "Not Archived";
     }
 

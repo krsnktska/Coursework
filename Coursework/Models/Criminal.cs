@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
 
 namespace Coursework.Models;
 
@@ -14,7 +12,7 @@ public class Criminal
     public string LastCrime { get; set; } = "None";
     public string SpecialChars { get; set; } = "None";
     public string KnownLanguages { get; set; } = "Russian";
-    public string Citizen { get; set; } = "Russia";
+    public string Citizenship { get; set; } = "Russia";
     public DateTime Birthday { get; set; } = DateTime.UnixEpoch;
     public AccessRight ReviewRight { get; set; } = AccessRight.Assistant;
     public AccessRight EditRight { get; set; } = AccessRight.Assistant;
@@ -22,6 +20,6 @@ public class Criminal
 
     public override string ToString()
     {
-        return Name;
+        return this.Name;
     }
 }

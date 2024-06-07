@@ -1,28 +1,26 @@
 using System;
+using System.Collections.Generic;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Media.Imaging;
-using Avalonia.Platform;
 using Coursework.Models;
 
 namespace Coursework.Views;
 
 public partial class CriminalEditorPanel : UserControl
 {
-    public Criminal Criminal;
-    public CriminalsManager Parent;
+    private Criminal Criminal;
+    private CriminalsManager ParentView;
     
-    public CriminalEditorPanel(Criminal criminal, CriminalsManager parent)
+    public CriminalEditorPanel(Criminal criminal, CriminalsManager parentView)
     {
         InitializeComponent();
         
         this.Criminal = criminal;
-        this.Parent = parent;
+        this.ParentView = parentView;
 
-        if (criminal.ImagePath != "")
-        {
-            Image.Source =  new Bitmap(AssetLoader.Open(new Uri(criminal.ImagePath)));   
-        }
+        char[] chars = { '/', '\\' };
+        Image.Content = criminal.ImagePath == "" ? "No Image" : criminal.ImagePath.Split(chars)[^1];
+        Image.Tag = criminal.ImagePath;
         Name.Text = criminal.Name;
         Nick.Text = criminal.Nickname;
         Height.Value = (decimal)criminal.Height;
@@ -30,7 +28,7 @@ public partial class CriminalEditorPanel : UserControl
         LastCrime.Text = criminal.LastCrime;
         SpecialChars.Text = criminal.SpecialChars;
         KnownLanguages.Text = criminal.KnownLanguages;
-        Citizen.Text = criminal.Citizen;
+        Citizen.Text = criminal.Citizenship;
         Birthday.SelectedDate = Criminal.Birthday;
         IsArchived.IsChecked = criminal.IsArchived;
 
@@ -45,6 +43,7 @@ public partial class CriminalEditorPanel : UserControl
 
     private void Apply_OnClick(object? sender, RoutedEventArgs e)
     {
+        Criminal.ImagePath = (string?)Image.Tag ?? "";
         Criminal.Name = Name.Text ?? "";
         Criminal.Nickname = Nick.Text ?? "";
         Criminal.Height = Decimal.ToDouble(Height.Value ?? 160) ;
@@ -52,16 +51,39 @@ public partial class CriminalEditorPanel : UserControl
         Criminal.LastCrime = LastCrime.Text ?? "";
         Criminal.SpecialChars = SpecialChars.Text ?? "";
         Criminal.KnownLanguages = KnownLanguages.Text ?? "";
-        Criminal.Citizen = Citizen.Text ?? "";
+        Criminal.Citizenship = Citizen.Text ?? "";
         Criminal.Birthday = (Birthday.SelectedDate ?? default).DateTime;
         Criminal.IsArchived = IsArchived.IsChecked ?? false;
 
         Criminal.EditRight = (AccessRight)(EditLevel.Value ?? (int)Criminal.EditRight);
         Criminal.ReviewRight = (AccessRight)(ReviewLevel.Value ?? (int)Criminal.ReviewRight);
         
-        this.Parent.CriminalEditPlaceHolder.Children.Clear();
-        this.Parent.CriminalEditPlaceHolder.Children.Add(new CriminaReviewPanel(Criminal, this.Parent));
+        this.ParentView.CriminalEditPlaceHolder.Children.Clear();
+        this.ParentView.CriminalEditPlaceHolder.Children.Add(new CriminalReviewPanel(Criminal, this.ParentView));
         
-        this.Parent.UpdateList("");
+        this.ParentView.UpdateList("");
+    }
+
+    private async void Image_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var dialog = new OpenFileDialog
+        {
+            Title = "Open File",
+            Filters = new List<FileDialogFilter>
+            {
+                new FileDialogFilter { Name = "Pick image", Extensions = new List<string> { "png", "jpg", "webm" } },
+            },
+            AllowMultiple = false,
+        };
+        
+        var result = await dialog.ShowAsync(App.Window);
+
+        if (result != null && result.Length > 0)
+        {
+            char[] chars = { '/', '\\' };
+            Image.Content = result[0].Split(chars)[^1];
+            Image.Tag = result[0];
+
+        }
     }
 }
