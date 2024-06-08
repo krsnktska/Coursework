@@ -232,7 +232,6 @@
         <!-- Criminals Manager End -->
 
         <!-- Criminal Editor -->
-        
         <Style Selector="Grid#CriminalEditor Image#Image">
             <Setter Property="Margin" Value="0 0 5 5" />
         </Style>
@@ -274,7 +273,10 @@
             <Setter Property="Margin" Value="5 0" />
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
-        
+
+        <Style Selector="Grid#CriminalViewer TextBlock">
+            <Setter Property="Margin" Value="5 0" />
+        </Style>
         <Style Selector="WrapPanel#RightsPanel TextBlock">
             <Setter Property="Margin" Value="5 0" />
             <Setter Property="VerticalAlignment" Value="Center" />
@@ -282,6 +284,7 @@
         <!-- Criminal Editor End -->
         
         <!-- Criminal Viewer -->
+
         <Style Selector="Grid#CriminalViewer Image#Image">
             <Setter Property="Margin" Value="0 0 5 5" />
         </Style>

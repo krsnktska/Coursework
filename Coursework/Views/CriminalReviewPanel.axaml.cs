@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.IO;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -47,7 +48,7 @@ public partial class CriminalReviewPanel : UserControl
         LastCrime.Text = "Last crime: " + criminal.LastCrime;
         SpecialChars.Text = "Specials: " + criminal.SpecialChars;
         KnownLanguages.Text = "Known languages: " + criminal.KnownLanguages;
-        Citizen.Text = criminal.Citizenship;
+        Citizenship.Text = criminal.Citizenship;
         Birthday.Text = "Birthday: " + Criminal.Birthday.ToString("d MMMM, yyyy");
         IsArchived.Text = criminal.IsArchived ? "Archived" : "Not Archived";
     }

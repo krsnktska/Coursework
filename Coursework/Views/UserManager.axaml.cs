@@ -32,11 +32,17 @@ public partial class UserManager : UserControl
 
     private void Delete_OnClick(object? sender, RoutedEventArgs e)
     {
-        var seleted = (User?)UsersGrid.SelectedItem;
+        var selected = (User?)UsersGrid.SelectedItem;
 
-        if (seleted == null) return;
+        if (selected == null) return;
 
-        App.Window.ViewModel.Database.UsersList.Remove(seleted);
+        if (selected == App.Window.LoggedUser)
+        {
+            App.Window.Notify("Error", "You can't delete yourself", "critical", 2500);
+            return;
+        }
+
+        App.Window.ViewModel.Database.UsersList.Remove(selected);
         UpdateUsersGrid();
     }
 

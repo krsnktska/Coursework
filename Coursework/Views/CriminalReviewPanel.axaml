@@ -17,36 +17,56 @@
             Width="150" Height="187"
             Stretch="Uniform"
             Name="Image" Source="/Assets/no_photo.png" />
+        
+        <ScrollViewer Grid.Column="1" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Margin="0 0 0 7.5"
+                Name="Name"/>
+        </ScrollViewer>
+        
+        <ScrollViewer Grid.Column="2" Grid.Row="0" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Margin="5 0 0 7.5"
+                Name="Nick" />
+        </ScrollViewer>
+        
         <TextBlock
-            Grid.Column="1" Grid.Row="0"
-            Margin="0 0 10 7.5"
-            Name="Name"/>
-        <TextBlock
-            Grid.Column="2" Grid.Row="0"
-            Name="Nick" />
-        <TextBlock
-            Margin="0 0 10 7.5"
+            Margin="0 0 5 7.5"
             Grid.Column="1" Grid.Row="1"
             Name="Height" />
-        <TextBlock
-            Grid.Column="2" Grid.Row="1"
-            Name="Profession" />
-        <TextBlock
-            Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2"
-            Name="LastCrime" />
-        <TextBlock
-            Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2"
-            Name="SpecialChars" />
-        <TextBlock
-            Grid.Column="0" Grid.Row="4"
-            Margin="0 0 10 7.5"
-            Name="Citizen" />
-        <TextBlock
-            Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2"
-            Name="KnownLanguages" />
-        <TextBlock
-            Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2"
-            Name="Birthday" />
+        
+        <ScrollViewer Grid.Column="2" Grid.Row="1" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Margin="5 0 0 7.5"
+                Name="Profession" />
+        </ScrollViewer>
+        
+        <ScrollViewer Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Name="LastCrime" />
+        </ScrollViewer>
+        
+        <ScrollViewer Grid.Column="1" Grid.Row="3" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Name="SpecialChars" />
+        </ScrollViewer>
+        
+        <ScrollViewer Grid.Column="0" Grid.Row="4" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Margin="0 0 10 7.5"
+                Name="Citizenship" />
+        </ScrollViewer>
+        
+        <ScrollViewer Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Name="KnownLanguages" />
+        </ScrollViewer>
+        
+        <ScrollViewer Grid.Column="0" Grid.Row="5" Grid.ColumnSpan="2" HorizontalScrollBarVisibility="Visible">
+            <TextBlock
+                Name="Birthday" />
+        </ScrollViewer>
+        
         <TextBlock
             Grid.Column="2" Grid.Row="5"
             Name="IsArchived">Archived</TextBlock>
